@@ -20,7 +20,7 @@ Extension Chrome d'amélioration de la QOL pour [IdleMMO](https://www.idle-mmo.c
 
 1. Télécharge ou clone ce dépôt :
    ```bash
-   git clone https://github.com/<ton-compte>/idlemmo-helper.git
+   git clone https://github.com/Sylrus/idlemmo-helper.git
    ```
 2. Ouvre Chrome et va sur `chrome://extensions`.
 3. Active le **"Mode développeur"** (en haut à droite).
