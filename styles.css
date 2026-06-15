@@ -1,95 +1,92 @@
 /* Character */
-a.profile svg { 
+a.idlemmo-helper-nav-profile svg {
     color: #32c3f9 !important;
 }
-a.inventory svg { 
+a.idlemmo-helper-nav-inventory svg {
     color: #ff970d !important;
 }
-#section-character li:nth-child(3) button svg { 
+#section-character li:nth-child(3) button svg {
     color: #ea4335 !important;
 }
 
 /* Skills */
-a.woodcutting svg { 
+a.idlemmo-helper-nav-woodcutting svg {
     color: #55c255 !important;
 }
 
-a.mining svg {
+a.idlemmo-helper-nav-mining svg {
     color: #c2833c !important;
 }
 
-a.fishing svg {
+a.idlemmo-helper-nav-fishing svg {
     color:#799edc !important;
 }
 
-a.alchemy svg {
+a.idlemmo-helper-nav-alchemy svg {
     color: #994d99 !important;
 }
 
-a.smelting svg {
+a.idlemmo-helper-nav-smelting svg {
      color: #ad4b4b !important;
 }
 
-a.cooking svg {
+a.idlemmo-helper-nav-cooking svg {
     color:#c1862d !important;
 }
 
-a.forge svg {
+a.idlemmo-helper-nav-forge svg {
     color: #29b294 !important;
 }
 
-a.meditation svg {
+a.idlemmo-helper-nav-meditation svg {
     color:#d675a8 !important;
 }
 
-a.construction svg {
+a.idlemmo-helper-nav-construction svg {
     color:#c2521b !important;
 }
 
 
 /* Play */
 
-a.pets svg {
+a.idlemmo-helper-nav-pets svg {
     color:#fc7f30 !important;
 }
 
-a.museum svg {
+a.idlemmo-helper-nav-museum svg {
     color:#ffffff !important
 }
 
-a.quests svg {
+a.idlemmo-helper-nav-quests svg {
     color:#00e0ff !important
 }
 
-a.guilds svg {
+a.idlemmo-helper-nav-guilds svg {
     color:#65c265 !important;
 }
 
-a.leagues svg {
+a.idlemmo-helper-nav-leagues svg {
     color: #ffff00 !important;
 }
 
 
 /* Combat */
-a.battle svg {
+a.idlemmo-helper-nav-battle svg {
     color:#e93636 !important;
 }
-a.dungeon svg {
+a.idlemmo-helper-nav-dungeon svg {
     color:#e78b25 !important;
 }
-a.world-boss svg {
+a.idlemmo-helper-nav-world-boss svg {
     color:#3de443 !important;
 }
 
 
 /* Trade */
-a.merchants svg {
+a.idlemmo-helper-nav-merchants svg {
     color:#6ab7ec !important;
 }
 
 #section-trade li:nth-child(2) a svg {
     color:#e7d325 !important;
 }
-
-
-

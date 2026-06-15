@@ -252,6 +252,10 @@
   }
 
   function scan() {
+    applyNavIconColors();
+    applyCharacterSelectorFixed();
+    applySkillListReverse();
+
     const rows = document.querySelectorAll('div.flex.justify-between.items-center');
     rows.forEach((row) => {
       if (row.classList.contains(ROW_MARKER_CLASS)) return;
@@ -282,86 +286,79 @@
     }
   }
 
-  function skillColor() {    
-    const links = document.querySelectorAll('li a');
-    links.forEach(link => {
-        const href = link.href;        
-        link.classList.forEach(cls => {                   
-            const knownClasses = [
-                //Character
-                'profile',
-                'inventory',
-                'map',
+  const NAV_ICON_CLASS_PREFIX = 'idlemmo-helper-nav-';
+  const NAV_ICON_KNOWN_CLASSES = [
+    // Character
+    'profile',
+    'inventory',
+    'map',
 
-                //Skills
-                'woodcutting',
-                'mining',
-                'fishing',
-                'alchemy',
-                'smelting',
-                'cooking',
-                'forge',
-                'meditation',
-                'construction',
+    // Skills
+    'woodcutting',
+    'mining',
+    'fishing',
+    'alchemy',
+    'smelting',
+    'cooking',
+    'forge',
+    'meditation',
+    'construction',
 
-                //Play
-                'pets',
-                'museum',
-                'quests',
-                'guilds',
-                'leagues',                
+    // Play
+    'pets',
+    'museum',
+    'quests',
+    'guilds',
+    'leagues',
 
-                //Combat
-                'battle',
-                'dungeon',
-                'world-boss',
+    // Combat
+    'battle',
+    'dungeon',
+    'world-boss',
 
-                //Trade
-                'merchants',
-                'market'                                          
-            ];
-            if (knownClasses.includes(cls)) {
-                link.classList.remove(cls);
-            }
-        });
-        
-        const match = href.match(/(?:skills\/view\/|@)?([a-zA-Z-]+)$/);
-        let className = '';
-        if (match && match[1]) {
-            className = match[1].toLowerCase();
+    // Trade
+    'merchants',
+    'market',
+  ];
+
+  function applyNavIconColors() {
+    const links = document.querySelectorAll('[id^="section-"] li a');
+    links.forEach((link) => {
+      const match = link.href.match(/(?:skills\/view\/|@)?([a-zA-Z-]+)$/);
+      const className = match && match[1] ? match[1].toLowerCase() : '';
+
+      NAV_ICON_KNOWN_CLASSES.forEach((cls) => {
+        const prefixed = `${NAV_ICON_CLASS_PREFIX}${cls}`;
+        if (cls !== className && link.classList.contains(prefixed)) {
+          link.classList.remove(prefixed);
         }
-        if (className) {
-            link.classList.add(className);
-        }         
+      });
+
+      if (className && NAV_ICON_KNOWN_CLASSES.includes(className)) {
+        link.classList.add(`${NAV_ICON_CLASS_PREFIX}${className}`);
+      }
     });
   }
 
-  const characterFixed = () => {
-      const selector = document.querySelector('[x-data="character_selector"]');
-      if (selector) {
-          selector.style.position = 'fixed';
-          selector.style.zIndex = '2';
-          selector.style.width = '83%';
-          selector.style.marginTop = '26px';
-      }
+  function applyCharacterSelectorFixed() {
+    const selector = document.querySelector('[x-data="character_selector"]');
+    if (!selector || selector.style.position === 'fixed') return;
+
+    selector.style.position = 'fixed';
+    selector.style.zIndex = '2';
+    selector.style.width = '83%';
+    selector.style.marginTop = '26px';
   }
 
-  const reverseSkillList = () => {
-      const targetNode = document.querySelector('[x-data="skill_list"]');
-      if (!targetNode) return;
+  function applySkillListReverse() {
+    const targetNode = document.querySelector('[x-data="skill_list"]');
+    if (!targetNode) return;
 
-      const applySkillListReverseStyles = () => {
-          const ulList = targetNode.querySelector('ul[role="list"]');
-          if (ulList && ulList.style.flexDirection !== 'column-reverse') {
-              // Apply the layout reversal directly to the element
-              ulList.style.display = 'flex';
-              ulList.style.flexDirection = 'column-reverse';            
-          }
-      };  
-      applySkillListReverseStyles();
-
-      const observer = new MutationObserver(() => applySkillListReverseStyles());
-      observer.observe(targetNode, { childList: true, subtree: true });
+    const ulList = targetNode.querySelector('ul[role="list"]');
+    if (ulList && ulList.style.flexDirection !== 'column-reverse') {
+      ulList.style.display = 'flex';
+      ulList.style.flexDirection = 'column-reverse';
+    }
   }
 
   let scheduled = false;
@@ -382,11 +379,6 @@
   });
 
   window.addEventListener('idlemmo-helper-tagged', scheduleScan);
-  
-  //styling
-  skillColor();
-  characterFixed();
-  reverseSkillList();
-  //logic
+
   scheduleScan();
 })();
