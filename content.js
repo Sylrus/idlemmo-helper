@@ -346,6 +346,24 @@
       }
   }
 
+  const reverseSkillList = () => {
+      const targetNode = document.querySelector('[x-data="skill_list"]');
+      if (!targetNode) return;
+
+      const applySkillListReverseStyles = () => {
+          const ulList = targetNode.querySelector('ul[role="list"]');
+          if (ulList && ulList.style.flexDirection !== 'column-reverse') {
+              // Apply the layout reversal directly to the element
+              ulList.style.display = 'flex';
+              ulList.style.flexDirection = 'column-reverse';            
+          }
+      };  
+      applySkillListReverseStyles();
+
+      const observer = new MutationObserver(() => applySkillListReverseStyles());
+      observer.observe(targetNode, { childList: true, subtree: true });
+  }
+
   let scheduled = false;
   function scheduleScan() {
     if (scheduled) return;
@@ -365,7 +383,10 @@
 
   window.addEventListener('idlemmo-helper-tagged', scheduleScan);
   
+  //styling
   skillColor();
   characterFixed();
+  reverseSkillList();
+  //logic
   scheduleScan();
 })();
