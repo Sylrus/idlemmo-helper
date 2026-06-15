@@ -282,6 +282,70 @@
     }
   }
 
+  function skillColor() {    
+    const links = document.querySelectorAll('li a');
+    links.forEach(link => {
+        const href = link.href;        
+        link.classList.forEach(cls => {                   
+            const knownClasses = [
+                //Character
+                'profile',
+                'inventory',
+                'map',
+
+                //Skills
+                'woodcutting',
+                'mining',
+                'fishing',
+                'alchemy',
+                'smelting',
+                'cooking',
+                'forge',
+                'meditation',
+                'construction',
+
+                //Play
+                'pets',
+                'museum',
+                'quests',
+                'guilds',
+                'leagues',                
+
+                //Combat
+                'battle',
+                'dungeon',
+                'world-boss',
+
+                //Trade
+                'merchants',
+                'market'                                          
+            ];
+            if (knownClasses.includes(cls)) {
+                link.classList.remove(cls);
+            }
+        });
+        
+        const match = href.match(/(?:skills\/view\/|@)?([a-zA-Z-]+)$/);
+        let className = '';
+        if (match && match[1]) {
+            className = match[1].toLowerCase();
+        }
+        if (className) {
+            link.classList.add(className);
+        }         
+    });
+  }
+
+  const characterFixed = () => {
+      const selector = document.querySelector('[x-data="character_selector"]');
+      if (selector) {
+          selector.style.position = 'fixed';
+          selector.style.zIndex = '2';
+          selector.style.width = '83%';
+          selector.style.marginTop = '26px';
+      }
+  }
+
   let scheduled = false;
   function scheduleScan() {
     if (scheduled) return;
@@ -300,6 +364,8 @@
   });
 
   window.addEventListener('idlemmo-helper-tagged', scheduleScan);
-
+  
+  skillColor();
+  characterFixed();
   scheduleScan();
 })();
