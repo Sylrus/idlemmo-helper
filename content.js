@@ -339,6 +339,7 @@
     'forge',
     'meditation',
     'construction',
+    'village-mastery',
 
     // Play
     'pets',
